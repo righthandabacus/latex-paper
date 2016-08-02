@@ -1,0 +1,73 @@
+% 方格紙
+\documentclass{article}
+\usepackage{geometry}
+\geometry{layout=letterpaper,hmargin=7.94mm,vmargin=9.7mm}
+
+\pagestyle{empty}
+\usepackage{tikz,ifthen}
+
+\begin{document}
+%\begin{tikzpicture}[x=1cm, y=1cm, remember picture]
+%\draw[step=1cm, line width=0.2mm, dotted, thin, black!33!white] (0,0) grid (18,24);
+%\draw[step=2cm, line width=0.6mm, thin, blue] (0,0) grid (18,24);
+%\end{tikzpicture}
+\begin{tikzpicture}[x=1cm,y=1cm,remember picture, overlay]
+\tikzset{normal lines/.style={black, very thin}} 
+\tikzset{vertical line/.style={blue, very thin}} 
+\tikzset{dotted normal lines/.style={red, dotted, very thin}}
+\tikzset{margin lines/.style={gray, thick}} 
+\tikzset{mm lines/.style={gray, ultra thin}} 
+\tikzset{strong lines/.style={black, very thin}} 
+\tikzset{master lines/.style={black, very thick}} 
+\tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+\node at (current page.south west){
+  \begin{tikzpicture}[remember picture, overlay]
+    \foreach[count=\i, evaluate={\m=int(mod(\i,2))}] \y in {0.97, 1.97, ..., 26.97} { % 10mm hrule
+      \ifthenelse{\m=1}{
+        \draw[style=normal lines](0.794,\y) -- (20.794, \y);
+      }{
+        \draw[style=dotted normal lines](0.794,\y) -- (20.794, \y);
+      }
+    };
+    \foreach[count=\i, evaluate={\m=int(mod(\i,2))}] \x in {0.794, 1.794, ..., 20.794} { % 10mm vrule
+      \ifthenelse{\m=1}{
+        \draw[style=normal lines](\x,0.97) -- (\x,26.97);
+      }{
+        \draw[style=dotted normal lines](\x,0.97) -- (\x,26.97);
+      }
+    };
+  \end{tikzpicture}
+};
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[x=1cm,y=1cm,remember picture, overlay]
+\tikzset{normal lines/.style={black, very thin}} 
+\tikzset{vertical line/.style={blue, very thin}} 
+\tikzset{dotted normal lines/.style={red, dotted, very thin}}
+\tikzset{margin lines/.style={gray, thick}} 
+\tikzset{mm lines/.style={gray, ultra thin}} 
+\tikzset{strong lines/.style={black, very thin}} 
+\tikzset{master lines/.style={black, very thick}} 
+\tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+\node at (current page.south west){
+  \begin{tikzpicture}[remember picture, overlay]
+    \foreach[count=\i, evaluate={\m=int(mod(\i,2))}] \y in {0.97, 1.97, ..., 26.97} { % 10mm hrule
+      \ifthenelse{\m=1}{
+        \draw[style=normal lines](0.794,\y) -- (20.794, \y);
+      }{
+        \draw[style=dotted normal lines](0.794,\y) -- (20.794, \y);
+      }
+    };
+    \foreach[count=\i, evaluate={\m=int(mod(\i,2))}] \x in {0.794, 1.794, ..., 20.794} { % 10mm vrule
+      \ifthenelse{\m=1}{
+        \draw[style=normal lines](\x,0.97) -- (\x,26.97);
+      }{
+        \draw[style=dotted normal lines](\x,0.97) -- (\x,26.97);
+      }
+    };
+  \end{tikzpicture}
+};
+\end{tikzpicture}
+\end{document}
