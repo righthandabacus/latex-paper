@@ -1,0 +1,64 @@
+% Double ruled paper for script letters, 4mm rule, 20 rows per page
+\documentclass{article}
+\usepackage{geometry}
+\geometry{layout=letterpaper,hmargin=15mm,vmargin=15mm} % letter = 215.9mm x 279.4mm
+
+\pagestyle{empty}
+\usepackage{tikz,ifthen}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm,remember picture, overlay]
+\tikzset{normal lines/.style={black, very thin}} 
+\tikzset{vertical line/.style={blue, very thin}} 
+\tikzset{dashed normal lines/.style={red, dashed, very thin}}
+\tikzset{margin lines/.style={gray, thick}} 
+\tikzset{mm lines/.style={gray, ultra thin}} 
+\tikzset{strong lines/.style={black, very thin}} 
+\tikzset{master lines/.style={black, very thick}} 
+\tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+\node at (current page.south west){
+  \begin{tikzpicture}[remember picture, overlay]
+    \foreach [evaluate={\z=int(mod(\y/0.4,3))}] \y in {1.0, 1.4,...,25.0} { % 4mm rule
+      \ifthenelse{\z=2}{
+        \draw[style=normal lines](0,\y) -- (8.5in, \y);
+      }{
+        \draw[style=dashed normal lines](0,\y) -- (8.5in, \y);
+      }
+    };
+    \draw[style=vertical line] (2.5cm,0)--(2.5cm,11in);
+    \foreach \y in {26.0, 26.8} {
+        \draw[style=normal lines] (15.59cm,\y) -- (20.59cm,\y); % short lines at top right corner
+    };
+  \end{tikzpicture}
+};
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[x=1cm,y=1cm,remember picture, overlay]
+\tikzset{normal lines/.style={black, very thin}} 
+\tikzset{vertical line/.style={blue, very thin}} 
+\tikzset{dashed normal lines/.style={red, dashed, very thin}}
+\tikzset{margin lines/.style={gray, thick}} 
+\tikzset{mm lines/.style={gray, ultra thin}} 
+\tikzset{strong lines/.style={black, very thin}} 
+\tikzset{master lines/.style={black, very thick}} 
+\tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+\node at (current page.south west){
+  \begin{tikzpicture}[remember picture, overlay]
+    \foreach [evaluate={\z=int(mod(\y/0.4,3))}] \y in {1.0, 1.4,...,25.0} { % 4mm rule
+      \ifthenelse{\z=2}{
+        \draw[style=normal lines](0,\y) -- (8.5in, \y);
+      }{
+        \draw[style=dashed normal lines](0,\y) -- (8.5in, \y);
+      }
+    };
+    %\draw[style=vertical line] (19.09cm,0)--(19.09cm,11in);
+    \draw[style=vertical line] (2.5cm,0)--(2.5cm,11in);
+    \foreach \y in {26.0, 26.8} {
+        \draw[style=normal lines] (15.59cm,\y) -- (20.59cm,\y); % short lines at top right corner
+    };
+  \end{tikzpicture}
+};
+\end{tikzpicture}
+\end{document}
