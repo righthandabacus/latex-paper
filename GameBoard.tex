@@ -1,0 +1,14 @@
+% 方格紙
+\documentclass{article}
+\usepackage{geometry}
+\geometry{layout=letterpaper,hmargin=5mm,vmargin=5mm}
+
+\pagestyle{empty}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+\begin{tikzpicture}[x=25mm, y=25mm, remember picture, overlay]
+\draw[step=25mm, line width=0.2mm, thin, black!33!white] ($(current page.south west) + (5mm,5mm)$) grid +(18,24);
+\end{tikzpicture}
+\end{document}
